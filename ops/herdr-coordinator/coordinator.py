@@ -14,11 +14,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 WORKTREES = ROOT / ".worktrees"
 TASK_DIR = ROOT / ".career-os" / "tasks"
+DISPATCHER = ROOT / "ops" / "herdr-coordinator" / "herdr_dispatch.sh"
 BASE_BRANCH = os.getenv("CAREER_OS_BASE_BRANCH", "main")
 AGENT = os.getenv("CAREER_OS_AGENT", "claude")
-WIP_LIMIT = int(os.getenv("CAREER_OS_WIP", "3"))
+WIP_LIMIT = int(os.getenv("CAREER_OS_WIP", "1"))
 POLL_SECONDS = int(os.getenv("CAREER_OS_POLL_SECONDS", "60"))
-DISPATCH_TEMPLATE = os.getenv("HERDR_DISPATCH_TEMPLATE", "").strip()
 
 LABELS = {
     "ready": "agent-ready",
@@ -31,10 +31,6 @@ LABELS = {
 
 def run(args: list[str], cwd: Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
     return subprocess.run(args, cwd=cwd or ROOT, text=True, capture_output=True, check=check)
-
-
-def run_shell(command: str, cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(command, cwd=cwd or ROOT, text=True, shell=True, capture_output=True, check=True)
 
 
 def gh_json(args: list[str]) -> object:
@@ -59,18 +55,19 @@ def ensure_labels() -> None:
 
 
 def preflight() -> None:
-    for binary in ("git", "gh", "herdr"):
+    for binary in ("git", "gh", "herdr", "python3"):
         if run(["sh", "-lc", f"command -v {shlex.quote(binary)}"], check=False).returncode != 0:
             raise SystemExit(f"BLOCKED: missing required binary: {binary}")
+    if os.getenv("HERDR_ENV") != "1":
+        raise SystemExit("BLOCKED: coordinator must run inside a Herdr-managed pane (HERDR_ENV=1)")
     if run(["gh", "auth", "status"], check=False).returncode != 0:
         raise SystemExit("BLOCKED: gh is not authenticated")
+    if repo_name() != "DeveloperAlly/job-application-intelligence-app":
+        raise SystemExit(f"BLOCKED: wrong repository: {repo_name()}")
     if not (ROOT / "STATE.md").exists() or not (ROOT / "CLAUDE.md").exists():
         raise SystemExit("BLOCKED: STATE.md and CLAUDE.md are required")
-    if not DISPATCH_TEMPLATE:
-        raise SystemExit("BLOCKED: HERDR_DISPATCH_TEMPLATE is not configured")
-    for field in ("{cwd}", "{agent}", "{prompt_file}", "{issue}"):
-        if field not in DISPATCH_TEMPLATE:
-            raise SystemExit(f"BLOCKED: HERDR_DISPATCH_TEMPLATE missing placeholder {field}")
+    if not DISPATCHER.exists():
+        raise SystemExit(f"BLOCKED: native Herdr dispatcher missing: {DISPATCHER}")
     ensure_labels()
 
 
@@ -146,6 +143,18 @@ def build_prompt(issue: dict, worktree: Path) -> Path:
     return local
 
 
+def dispatch_agent(worktree: Path, agent_kind: str, prompt_file: Path, issue_number: int) -> None:
+    cp = run([
+        "bash", str(DISPATCHER), str(worktree), agent_kind, str(prompt_file), str(issue_number)
+    ], check=False)
+    if cp.stdout:
+        print(cp.stdout, end="")
+    if cp.returncode != 0:
+        if cp.stderr:
+            print(cp.stderr, file=sys.stderr, end="")
+        raise RuntimeError(f"Herdr dispatch failed for issue #{issue_number} (exit {cp.returncode})")
+
+
 def dispatch(issue: dict) -> None:
     number = int(issue["number"])
     ok, reason = controls_pass(issue.get("body") or "")
@@ -154,16 +163,10 @@ def dispatch(issue: dict) -> None:
         return
     worktree, _branch = create_worktree(number)
     prompt_file = build_prompt(issue, worktree)
-    command = DISPATCH_TEMPLATE.format(
-        cwd=shlex.quote(str(worktree)),
-        agent=shlex.quote(AGENT),
-        prompt_file=shlex.quote(str(prompt_file)),
-        issue=number,
-    )
     remove_label(number, LABELS["ready"])
     add_labels(number, LABELS["running"])
     try:
-        run_shell(command)
+        dispatch_agent(worktree, AGENT, prompt_file, number)
     except Exception:
         remove_label(number, LABELS["running"])
         add_labels(number, LABELS["blocker"])
