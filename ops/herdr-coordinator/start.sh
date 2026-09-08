@@ -4,18 +4,12 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
-mkdir -p .career-os/tasks .worktrees
-
-if [[ ! -f .career-os/herdr.env ]]; then
-  cp ops/herdr-coordinator/herdr.env.example .career-os/herdr.env
-  echo "BLOCKED: edit .career-os/herdr.env once and set HERDR_DISPATCH_TEMPLATE to the exact local Herdr launch command."
-  exit 2
+if [[ "${HERDR_ENV:-}" != "1" ]]; then
+  echo "BLOCKED: start this from a Herdr-managed pane (HERDR_ENV=1)." >&2
+  exit 3
 fi
 
-set -a
-# shellcheck disable=SC1091
-source .career-os/herdr.env
-set +a
+mkdir -p .career-os/tasks .worktrees
 
 python3 ops/herdr-coordinator/coordinator.py bootstrap
 python3 ops/herdr-coordinator/orchestrator.py once
