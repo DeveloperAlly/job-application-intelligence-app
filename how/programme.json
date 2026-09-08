@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "programme": "Career OS",
+  "rules": {
+    "wip_before_control_acceptance": 1,
+    "wip_after_control_acceptance": 3,
+    "task_complete_requires": ["closed", "verified"],
+    "phase_advance_requires": ["all_tasks_complete", "phase_gate_approved"],
+    "no_downstream_on_system_blocker": true,
+    "no_production_code_before_phase": 7
+  },
+  "phases": [
+    {"id":"P0","title":"Product Definition","tasks":["Vision","Problem statement","Personas","Jobs-to-be-done","Scope","Non-goals","Success metrics","Product principles","Glossary"],"gate":"Product definition approved"},
+    {"id":"P1","title":"User Journey & IA","tasks":["Onboarding journey","Career data import journey","Job discovery journey","Job review journey","Application generation journey","Approval journey","Submission journey","Tracking journey","Follow-up journey","Interview journey","Outcome journey","Career-data maintenance journey","Navigation map","Page inventory","Application state machine","Automation state machine","Human decision queue model"],"gate":"User journey and IA approved"},
+    {"id":"P2","title":"UX/UI Design","tasks":["Today","Jobs","Application workspace","Documents","Composer","Career Data","Toolkit","Setup Wizard","Connections/System Health","Empty/loading/error/stale/uncertainty states","Automation-health UI","Responsive behaviour","Clickable core journey"],"gate":"UX/UI approved"},
+    {"id":"P3","title":"Domain/Data Design","tasks":["Domain model","ERD","Entity lifecycle definitions","Provenance model","Versioning model","RLS/security model","Storage model","Migration plan","Reasoning-layer entities","Installation/provider entities","Retention rules"],"gate":"Domain and data design approved"},
+    {"id":"P4","title":"System Architecture","tasks":["System overview","Service boundaries","Data flow","Event model","Queue/worker architecture","Scheduling model","Agent orchestration","Integrations","Provider abstraction","Security architecture","Secrets model","Observability","Failure recovery","ADRs"],"gate":"System architecture approved"},
+    {"id":"P5","title":"Agent Design","tasks":["Job analysis","Requirement extraction","Requirement matching","Positioning","Resume writer","Cover-letter writer","Voice rewriter","Verifier","Email classifier","Company research"],"gate":"Agent contracts approved"},
+    {"id":"P6","title":"Evaluation Design","tasks":["JD-analysis golden dataset","Evidence-match dataset","Resume-generation dataset","Cover-letter dataset","Email-status dataset","Voice dataset","Synthetic canonical user","Rubrics","Thresholds","Regression policy","Failure taxonomy","End-to-end evals"],"gate":"Eval system approved"},
+    {"id":"P7","title":"Technical Planning","tasks":["Epics","Bounded tickets","Dependency map","Risk register","Migration sequence","Release plan","Definition of Done enforcement"],"gate":"Technical plan approved"},
+    {"id":"P8","title":"Foundation Build","tasks":["Repo/application shell","Authentication","Supabase bootstrap","Reproducible migrations","RLS","API layer","Audit/run lineage","Document versioning","State/event engine","Queue/worker","Scheduler","Provider registry","Connections framework","Secret storage","Logging/error handling","Observability","CI","Test harness"],"gate":"Foundation accepted"},
+    {"id":"P9","title":"Vertical Slice 1","tasks":["Manual JD input","JD analysis","Evidence match","Positioning","Resume generation","Fact verification","Human review","Save artifact","End-to-end acceptance"],"gate":"Vertical slice accepted"},
+    {"id":"P10","title":"Expand Intelligence","tasks":["Cover letters","Recruiter messages","Screening answers","Company research","Positioning variants","Voice adaptation","Evidence ranking","Evidence gaps","Recruiter scan","Application strategy","Interview briefs"],"gate":"Expanded intelligence accepted"},
+    {"id":"P11","title":"Automation","tasks":["Search profiles","Job-source adapters","Scheduled discovery","Deduplication","Ranking","Hard-constraint filtering","Daily queue","Automation policies","Notifications","Human decision queue","Retry/dead-letter handling","Automation activity/trust UI"],"gate":"Automation accepted"},
+    {"id":"P12","title":"Application Workflow","tasks":["Approvals","Submission support","Application tracker","Gmail integration","Calendar integration","Email sync","Status inference","Follow-up engine","Interview mode","Recruiter CRM","Human status override"],"gate":"Application workflow accepted"},
+    {"id":"P13","title":"Learning Loop","tasks":["Outcome capture","Response-rate analytics","Interview conversion analytics","Edit-diff learning","Search-title learning","Evidence-performance analytics","Strategy-performance analytics","Search-profile refinement","User feedback signals","Model/eval feedback loops"],"gate":"Learning loop accepted"},
+    {"id":"P14","title":"Hardening / Release","tasks":["Security review","RLS audit","Secret audit","Load/failure tests","Performance testing","Browser/device testing","Accessibility","Backup/restore","Monitoring/alerts","Privacy/data export/delete","Rollback","Migration testing","Clean-room installation","Provider-switch testing","Documentation","OSS packaging","Licensing","OSS release gate"],"gate":"Release approved"},
+    {"id":"P15","title":"Ongoing Product Ops","tasks":["Change-control process","Prompt versioning","Eval regression suite","ADR governance","Schema governance","Data-health audit","Product analytics","Provider performance","Cost monitoring","Bug triage","Security updates","Migration maintenance","Job-source maintenance","Release management","Roadmap prioritisation"],"gate":"Ongoing continuous operation"}
+  ]
+}
