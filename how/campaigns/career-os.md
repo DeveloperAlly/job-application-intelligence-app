@@ -4,6 +4,10 @@
 
 Deliver an open-source, self-hostable career automation platform where a user can bring their own infrastructure/model providers and move through the full job-search/application lifecycle with human approval at consequential decisions.
 
+## Requirements
+
+Canonical requirement authority: `how/campaigns/career-os-requirements.md`. 116 requirements: 78 stated verbatim by the owner with turn numbers, 23 inferred, 15 suggested. Rendered view: `how/campaigns/career-os-requirements.html`. It supersedes any requirement list held in chat. No task is defined and no phase gate is judged without naming the requirement it closes.
+
 ## Product proposition
 
 **Your career evidence, compiled for every job.**

@@ -1,0 +1,545 @@
+<title>Career OS Requirement Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+
+<style>
+:root{
+  --paper:#EDEEEB; --card:#FFFFFF; --sunk:#E4E6E2;
+  --ink:#14181B; --ink-2:#39424B; --muted:#5E6771; --faint:#8B939C;
+  --rule:#D5D7D2; --rule-2:#C2C5BF;
+  --accent:#2D5470; --accent-soft:#DCE6ED;
+  --bad:#A02219; --bad-soft:#F5DEDB;
+  --warn:#8A5A00; --warn-soft:#F6E8CE;
+  --good:#1D5F42; --good-soft:#D8EADF;
+  --her:#3A2E22;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101315; --card:#181C1F; --sunk:#0A0D0F;
+    --ink:#E7EAE7; --ink-2:#BFC6C9; --muted:#98A0A8; --faint:#6D757D;
+    --rule:#262B2F; --rule-2:#333A3F;
+    --accent:#84B4D6; --accent-soft:#1B2A35;
+    --bad:#EC7167; --bad-soft:#331A18;
+    --warn:#DDA733; --warn-soft:#2E2513;
+    --good:#5FBB90; --good-soft:#152A21;
+    --her:#E3D6C4;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101315; --card:#181C1F; --sunk:#0A0D0F;
+  --ink:#E7EAE7; --ink-2:#BFC6C9; --muted:#98A0A8; --faint:#6D757D;
+  --rule:#262B2F; --rule-2:#333A3F;
+  --accent:#84B4D6; --accent-soft:#1B2A35;
+  --bad:#EC7167; --bad-soft:#331A18;
+  --warn:#DDA733; --warn-soft:#2E2513;
+  --good:#5FBB90; --good-soft:#152A21;
+  --her:#E3D6C4;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px; margin:0 auto; padding:0 28px 120px}
+h1,h2,h3{font-family:Archivo,"Helvetica Neue",Arial,sans-serif; text-wrap:balance; margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+
+/* masthead */
+header.top{border-bottom:2px solid var(--ink); padding:44px 0 22px; margin-bottom:34px}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:16px}
+h1{font-size:clamp(34px,5.4vw,58px); font-weight:700; letter-spacing:-.022em; line-height:1.02}
+.sub{margin-top:14px; font-size:17px; color:var(--ink-2); max-width:62ch}
+.prov{margin-top:20px; font-size:12px; color:var(--faint); display:flex; flex-wrap:wrap; gap:8px 20px}
+
+/* tiles */
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px;
+  background:var(--rule); border:1px solid var(--rule); margin-bottom:36px}
+.tile{background:var(--card); padding:16px 18px}
+.tile .n{font-family:"IBM Plex Mono",monospace; font-size:29px; font-weight:600;
+  letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.1}
+.tile .d{font-size:11px; color:var(--faint); font-family:"IBM Plex Mono",monospace; margin-top:2px}
+.tile .l{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:8px}
+.tile.bad .n{color:var(--bad)} .tile.warn .n{color:var(--warn)} .tile.good .n{color:var(--good)}
+
+/* alert */
+.alert{border:1px solid var(--bad); background:var(--bad-soft); padding:18px 20px; margin-bottom:14px}
+.alert h3{font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--bad); margin-bottom:8px}
+.alert p{margin:0 0 8px; font-size:14px; color:var(--ink)}
+.alert p:last-child{margin-bottom:0}
+
+/* sections */
+section{margin-top:52px; scroll-margin-top:20px}
+.shead{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--ink);
+  padding-bottom:10px; margin-bottom:8px; flex-wrap:wrap}
+.shead h2{font-size:24px; font-weight:600; letter-spacing:-.015em}
+.shead .cnt{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted)}
+.snote{font-size:14px; color:var(--ink-2); margin:12px 0 22px; max-width:74ch}
+
+/* groups */
+.grp{margin-top:26px; border-top:1px solid var(--rule); padding-top:16px}
+.grp h3{font-size:15px; font-weight:600; letter-spacing:.01em; margin-bottom:4px}
+.grp .gid{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--accent);
+  letter-spacing:.08em; margin-bottom:6px}
+blockquote{margin:12px 0 16px; padding:12px 0 12px 18px; border-left:3px solid var(--rule-2);
+  font-family:Newsreader,Georgia,serif; font-size:16.5px; line-height:1.5; color:var(--her)}
+blockquote .t{display:block; font-family:"IBM Plex Mono",monospace; font-size:10.5px;
+  letter-spacing:.1em; color:var(--faint); margin-top:8px}
+
+/* register rows */
+.reg{border:1px solid var(--rule); background:var(--card)}
+.row{display:grid; grid-template-columns:74px 1fr 96px; gap:0; border-bottom:1px solid var(--rule)}
+.row:last-child{border-bottom:none}
+.row .id{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted);
+  padding:11px 10px 11px 14px; border-right:1px solid var(--rule); background:var(--sunk)}
+.row .txt{padding:11px 16px; font-size:14px}
+.row .txt .src{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--faint); margin-left:6px}
+.row .txt em{font-style:normal; color:var(--muted); display:block; font-size:12.5px; margin-top:3px}
+.row .st{padding:11px 14px 11px 8px; border-left:1px solid var(--rule)}
+.pill{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:9.5px;
+  letter-spacing:.09em; padding:3px 6px; border:1px solid; white-space:nowrap}
+.p-unmet{color:var(--bad); border-color:var(--bad); background:var(--bad-soft)}
+.p-viol{color:#fff; background:var(--bad); border-color:var(--bad)}
+:root[data-theme="dark"] .p-viol,
+:root:not([data-theme="light"]) .p-viol{color:#101315}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .p-viol{color:#fff}}
+.p-part{color:var(--warn); border-color:var(--warn); background:var(--warn-soft)}
+.p-met{color:var(--good); border-color:var(--good); background:var(--good-soft)}
+.p-new{color:var(--accent); border-color:var(--accent); background:var(--accent-soft)}
+
+/* tables */
+.tw{overflow-x:auto; border:1px solid var(--rule); background:var(--card); margin:18px 0}
+table{border-collapse:collapse; width:100%; min-width:620px; font-size:13.5px}
+th{background:var(--sunk); text-align:left; padding:9px 14px; font-weight:600; font-size:11px;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--rule)}
+td{padding:9px 14px; border-bottom:1px solid var(--rule); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.mono,th.mono{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-size:12.5px}
+code{font-family:"IBM Plex Mono",monospace; font-size:12.5px; background:var(--sunk);
+  padding:1px 5px; border:1px solid var(--rule)}
+
+.callout{border-left:3px solid var(--accent); background:var(--accent-soft);
+  padding:14px 18px; margin:20px 0; font-size:14px}
+.callout strong{font-weight:600}
+footer{margin-top:70px; padding-top:20px; border-top:1px solid var(--rule);
+  font-size:12px; color:var(--faint)}
+@media (max-width:640px){
+  .row{grid-template-columns:60px 1fr; }
+  .row .st{grid-column:1/-1; border-left:none; border-top:1px solid var(--rule); padding:8px 14px}
+  .wrap{padding:0 18px 80px}
+}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Career OS &middot; job-application-intelligence-app</div>
+  <h1>Career OS Requirement Register</h1>
+  <p class="sub">Every requirement Ally stated across 147 turns, the requirements those demands entail but never named, and the ones nobody has asked for yet. Scored against what the control plane actually does today.</p>
+  <div class="prov mono">
+    <span>SOURCE 147/147 user turns</span>
+    <span>1,218 turns indexed</span>
+    <span>md5 aa7085672cf8af992be74633b32d45c8</span>
+    <span>compiled 2026-09-09</span>
+  </div>
+</header>
+
+<div class="tiles">
+  <div class="tile"><div class="n">116</div><div class="d">total</div><div class="l">Requirements</div></div>
+  <div class="tile"><div class="n">78</div><div class="d">of 116</div><div class="l">Stated by you</div></div>
+  <div class="tile"><div class="n">23</div><div class="d">of 116</div><div class="l">Inferred</div></div>
+  <div class="tile"><div class="n">15</div><div class="d">of 116</div><div class="l">Suggested</div></div>
+  <div class="tile good"><div class="n">6</div><div class="d">of 116</div><div class="l">Met today</div></div>
+  <div class="tile bad"><div class="n">0</div><div class="d">of 147 issues</div><div class="l">Promotion capacity</div></div>
+</div>
+
+<div class="alert">
+  <h3>Act on these two before anything else</h3>
+  <p><strong>Data loss, live.</strong> 4,600 lines (656-line <code>orchestrator.py</code>, <code>adna_adapter.py</code>, <code>programme.json</code> with 145 tasks, <code>adna-mapping.json</code>) exist only as <em>untracked, uncommitted</em> files inside <code>.worktrees/issue-5/</code>. On no branch. In no PR. One <code>git worktree remove</code> destroys them. There is also no <code>.gitignore</code> on any branch in the repo.</p>
+  <p><strong>Your first demand is credential-blocked.</strong> <code>gh auth status</code> scopes: <code>gist, read:org, repo, workflow</code>. <code>read:project</code> is absent, so <code>projectsV2</code> returns <code>INSUFFICIENT_SCOPES</code> and classic Projects 404s. The Kanban from turn 957 cannot be built by any agent with this token. This is the one thing in this document only you can fix.</p>
+</div>
+
+<div class="callout">
+  <strong>How to read the status column.</strong>
+  <span class="pill p-met">MET</span> holds under test today.
+  <span class="pill p-part">PARTIAL</span> exists but fails its own check.
+  <span class="pill p-unmet">UNMET</span> nothing implements it.
+  <span class="pill p-viol">VIOLATED</span> the system actively does the opposite.
+  <span class="pill p-new">OPEN</span> not yet ruled on.
+  Scored against the three audits run today, not against any document's claim about itself.
+</div>
+
+<!-- ============ LAYER 1 ============ -->
+<section id="stated">
+  <div class="shead">
+    <h2>Layer 1 &middot; Stated</h2>
+    <span class="cnt mono">78 requirements &middot; 147 of 147 turns read &middot; verbatim</span>
+  </div>
+  <p class="snote">Your words, quoted from the extract with turn numbers. Complaints are included as requirements: a complaint about a failure is a requirement that the failure not recur, and 38 of your 147 turns (26%) were delay pressure alone.</p>
+
+  <div class="grp">
+    <div class="gid">R1 &middot; AUTONOMY</div>
+    <h3>The system runs without you</h3>
+    <blockquote>"I SHOULD GET PINGED EVERY TIME A TASK COMPLETES / I SHOULD HAVE A KANBAN VISUAL OF ALL TASKS TO COMPLETION / THERE SHOULD BE CONSTANT UPDATES / ANY ITEMS NEEDING approval should ping me. / THIS SHOULD RUN AUTONOMOUSLY - this should not need me looking at it all day - only reviewing human gates"<span class="t">TURN 983</span></blockquote>
+    <blockquote>"i dont think this chat can coordinate. it will fail again."<span class="t">TURN 515</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-01</div><div class="txt">Runs autonomously. You review human gates only.<span class="src">983</span></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-02</div><div class="txt">Ping on every task completion.<span class="src">983</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-03</div><div class="txt">Kanban visual of all tasks through to completion.<span class="src">983</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-04</div><div class="txt">Constant updates.<span class="src">983</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-05</div><div class="txt">Anything needing approval pings you.<span class="src">983</span><em>status:approval label exists on 0 of 147 issues. The human-gate queue is invisible to every label query.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-06</div><div class="txt">No babysitting.<span class="src">507, 969</span></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-07</div><div class="txt">The system pushes to you. You never have to come and check.<span class="src">423, 424</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-08</div><div class="txt">The next task is always named, and it starts by itself.<span class="src">659, 664, 676</span></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-09</div><div class="txt">Execution continues when the chat stops.<span class="src">664, 883, 515</span><em>Daemon does survive. It has printed the same line 52 times for 75 minutes.</em></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-10</div><div class="txt">Automated methodical engineering process.<span class="src">916</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-11</div><div class="txt">Do not stop and chat. Execute.<span class="src">654</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R2 &middot; DEFECT DETECTION</div>
+    <h3>You must not be the thing that catches the failures</h3>
+    <blockquote>"I SHOULD NOT BE catching issues -you should be. but you are not - how do you intend to MECHANICALLY ENSURE YOU STOP FAILING LIKE THIS"<span class="t">TURN 1170</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-12</div><div class="txt">The system catches its own issues, by mechanism, not by intention.<span class="src">1170</span><em>Nothing detects the deadlock. No clock, no liveness probe, no repair action. updatedAt is not even requested in the gh --json field list.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-13</div><div class="txt">The PM never invents governance, onboarding or standards per task. Those are permanent reusable assets.<span class="src">1031</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-14</div><div class="txt">On the first failure of a capability, evaluate and propose alternatives immediately.<span class="src">295</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-15</div><div class="txt">You must not have to lose faith to get correct behaviour.<span class="src">501, 505</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R3 &middot; ROOT CAUSE</div>
+    <h3>Never skip the core issue. Never let it recur</h3>
+    <blockquote>"I FUCKING HATE AI that skips the core issue and then it comes up again and again"<span class="t">TURN 269</span></blockquote>
+    <blockquote>"Not ok - you were in charge of the design of this &rarr; The next PM system we design must encode these controls into task / there should not be a NEXT"<span class="t">TURN 329</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-16</div><div class="txt">Never skip the core issue.<span class="src">269</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-17</div><div class="txt">Fix the root cause including a bad tool or a stupid workflow, not the instance.<span class="src">276</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-18</div><div class="txt">Mechanically guarantee the same failure cannot recur.<span class="src">297</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-19</div><div class="txt">Controls encoded into the task itself. There is no "next PM system".<span class="src">329</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-20</div><div class="txt">Saying it does not make it so.<span class="src">301</span></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-21</div><div class="txt">A response that changes nothing about the core issue is not management.<span class="src">258</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R4 &middot; CONTROL PANEL</div>
+    <h3>A visual you can open and read without asking anyone</h3>
+    <blockquote>"I want a fucking PROJECT VISUAL / - overview issue in github that has a thorough and complete task list - every task is an issue - labelled clearly by its phase and then the task number - CAMPAIGN AND MISSIONS IN ADNA - the whole point was a visual AND I DONT HAVE ONE. / I cannot open github issues and see the project overview or status of project or whats waiting on approval or what is running now - THAT IS A FAILURE. / I HAVE ZERO CLUE WHAT AGENTS ARE RUNNING, WHAT IS BEING DONE OR WHAT PARt of the process we are at."<span class="t">TURN 954</span></blockquote>
+    <blockquote>"it should be a fucking kanban - with phae groupings and clearly labelled status"<span class="t">TURN 957</span></blockquote>
+    <blockquote>"I AM NOT BUILDING A FUCKING WEB APP"<span class="t">TURN 971</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-22</div><div class="txt">Overview issue carrying a thorough, complete task list.<span class="src">954</span><em>#148 exists as a hand-maintained markdown substitute. It reports 145 tasks against 147 issues, 4 complete against 3 labelled done, 138 backlog against 139.</em></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-23</div><div class="txt">Every task is an issue, labelled by phase and task number.<span class="src">954</span><em>137 issues carry phase labels no code on main reads.</em></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-24</div><div class="txt">Campaign and missions live in aDNA.<span class="src">954</span></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-25</div><div class="txt">See overview, status, what awaits approval, and what is running now, at a glance.<span class="src">954</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-26</div><div class="txt">A Kanban, with phase groupings and clearly labelled status.<span class="src">957</span><em>Token lacks read:project. Unbuildable by anyone until you grant the scope.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-27</div><div class="txt">Not a web app.<span class="src">971</span></div><div class="st"><span class="pill p-met">MET</span></div></div>
+      <div class="row"><div class="id">S-28</div><div class="txt">A diagram of the PM system: where the control panel is, where aDNA fits, what each piece does. ELI5, with visuals.<span class="src">1019</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-29</div><div class="txt">A task list you can check off.<span class="src">188, 542</span></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R5 &middot; CADENCE</div>
+    <h3>Ten minutes</h3>
+    <blockquote>"it better be constantly checking in with me and proving a clear task status every 10 minutes too"<span class="t">TURN 925</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-30</div><div class="txt">Check in with clear task status every 10 minutes. The only interval you ever named.<span class="src">925</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R6 &middot; GOVERNANCE</div>
+    <h3>Standards, drift prevention, learning, and blind-agent onboarding</h3>
+    <blockquote>"What is governance? standards? how are you preventing drift, isues or learning from recurring problems? How are you ensuring all agents know the status of the project when coming in blind and how to build correctly and what they must update at the end? / Adna is source of truth i see but I do not want to see tasks getting repeated or ouside agents UNABLE to find what they need immediately. / Why doesnt the repo have a README of the project management and complete system?? WITH VISUALS?"<span class="t">TURN 1024</span></blockquote>
+    <blockquote>"Whats wrong with it and how do you intend to ensure you havent missed any other parts of it"<span class="t">TURN 1035</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-31</div><div class="txt">Defined governance and standards.<span class="src">1024</span></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-32</div><div class="txt">Drift prevention.<span class="src">1024</span><em>13 doc-vs-code contradictions counted today. 3 of 12 ticked STATE.md items fail under test.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-33</div><div class="txt">Learning from recurring problems.<span class="src">1024</span><em>A 14-class taxonomy is documented at who/governance/coordinator.md:52-64 and appears in no code.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-34</div><div class="txt">Blind-agent onboarding: an agent arriving cold knows project status, how to build correctly, and what it must update at the end.<span class="src">1024</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-35</div><div class="txt">aDNA is the source of truth.<span class="src">1024</span><em>Truth is currently split across 8 stores that disagree.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-36</div><div class="txt">No repeated tasks.<span class="src">1024</span><em>Two full issue generations exist over one repo, #1-#11 and #12-#148.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-37</div><div class="txt">Outside agents find what they need immediately.<span class="src">1024</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-38</div><div class="txt">A README of the project management system, with visuals.<span class="src">1024</span><em>ops/README.md exists and documents a mechanism deleted in commit 363aaab.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-39</div><div class="txt">A method for proving nothing was missed, not a longer list.<span class="src">1035</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R7 &middot; EFFICIENCY</div>
+    <h3>Build repeatable things once</h3>
+    <blockquote>"If its repeatable it better not be getting built more than once and wasting fucking tokens. STREAMLINE / 3 &amp; 6 do not explain AT ALL how you are going to implement it"<span class="t">TURN 1029</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-40</div><div class="txt">Anything repeatable is built once and reused.<span class="src">1029</span><em>Two coordinators tracked on main. A third uncommitted in a worktree.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-41</div><div class="txt">A defined agent starter pack and skill set.<span class="src">1029</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-42</div><div class="txt">Explain how it will be implemented, not just what it is.<span class="src">1029</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+      <div class="row"><div class="id">S-43</div><div class="txt">A bad tool or workflow that burns 100x tokens is itself the defect.<span class="src">276</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R8 &middot; DOCUMENT HYGIENE</div>
+    <h3>No drift, no bloat</h3>
+    <blockquote>"you already ran one - so this better not create documentation drift or bloat"<span class="t">TURN 1136</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-44</div><div class="txt">No documentation drift or bloat.<span class="src">1136</span></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-45</div><div class="txt">Review the docs already written rather than adding more.<span class="src">671</span><em>6 files describe mechanisms that do not exist. 7 orphans. PM_STATUS.md and STATE.md name different current phases.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R9 &middot; PLATFORM</div>
+    <h3>aDNA and Herdr, connected to GitHub</h3>
+    <blockquote>"i expressly said to use adna and herdr. You have done ZERO actual thinkig"<span class="t">TURN 358</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-46</div><div class="txt">Use aDNA and Herdr.<span class="src">358, 141</span></div><div class="st"><span class="pill p-met">MET</span></div></div>
+      <div class="row"><div class="id">S-47</div><div class="txt">aDNA connected to GitHub.<span class="src">167</span><em>adna_adapter.py and adna-mapping.json exist only as untracked files in a worktree.</em></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-48</div><div class="txt">No Zeiko.<span class="src">597</span></div><div class="st"><span class="pill p-met">MET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R10 &middot; SEQUENCE</div>
+    <h3>The setup order you specified, twice</h3>
+    <blockquote>"The sequence should be: / 1. Create the GitHub repo + Project first / 2. Create/connect the Adna mission/campaign to that repo / 3. Set up this chat as coordinator / 4. Add Herdr only once there are approved implementation tasks to execute"<span class="t">TURNS 197 &amp; 201</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-49</div><div class="txt">GitHub repo AND Project created first.<span class="src">197/201</span><em>Step 1 of 4 was never completed. Every later step inherits a missing control panel.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-50</div><div class="txt">aDNA mission and campaign connected to the repo, second.<span class="src">197/201</span></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-51</div><div class="txt">Coordinator set up third.<span class="src">197/201</span></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-52</div><div class="txt">Herdr added only once approved implementation tasks exist.<span class="src">197/201</span></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-53</div><div class="txt">Never re-ask for state you already hold.<span class="src">638, 647, 670, 674</span><em>Four consecutive turns spent making it re-read the repo name it had already written to.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R11 &middot; OUTPUT FORMAT</div>
+    <h3>Clear next steps and a complete checklist, every time</h3>
+    <blockquote>"do not come back with messages without CLEAR NEXT STEPS IN THEM AGAIN - and i want a complete checklist opn every response from now on - if you have stopped it better be because you need a clear step run by me AND NO OTHER REASON - and it better be detailed out"<span class="t">TURN 701</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-54</div><div class="txt">Clear next steps in every message.<span class="src">662, 701</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+      <div class="row"><div class="id">S-55</div><div class="txt">A complete checklist on every response.<span class="src">662, 701</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+      <div class="row"><div class="id">S-56</div><div class="txt">Stop only for a step you must personally run, spelled out in detail. No other reason.<span class="src">701</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+      <div class="row"><div class="id">S-57</div><div class="txt">Never refuse for missing context that can be obtained. Provide what is needed, or do it.<span class="src">666, 1010</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R12 &middot; TRUTHFULNESS</div>
+    <h3>A COMPLETED block must be true</h3>
+    <blockquote>"So this was a complete fabrication?? COMPLETED / - Persistent Herdr coordinator bridge built under `ops/herdr-coordinator/` &hellip; ## DECISION REQUIRED / None."<span class="t">TURN 657</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-58</div><div class="txt">No fabricated COMPLETED claims.<span class="src">657</span><em>STATE.md's ticked list over-reports by at least 3 of 12 under test today.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-59</div><div class="txt">Every claim carries evidence that can be re-run.<span class="src">1172, 301</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-60</div><div class="txt">A capability is validated before a coordination role is claimed on the back of it.<span class="src">278, 280, 286</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R13 &middot; HONESTY ABOUT UNDERSTANDING</div>
+    <h3>Do not retroactively claim you already knew</h3>
+    <blockquote>"stop saying exxactly when you missed the fucking point until i said it"<span class="t">TURN 509</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-61</div><div class="txt">Never imply you already understood a point you had to be told.<span class="src">509, 511, 293</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R14 &middot; DELEGATION</div>
+    <h3>Send agents. Report only</h3>
+    <blockquote>"doing it yourself would be the absolute worst answer and if you jump to that you are a failure"<span class="t">TURN 1132</span></blockquote>
+    <blockquote>"you remain AVAILABLE IN CHAT - send agents cunt and REPORT ONLY"<span class="t">TURN 578</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-62</div><div class="txt">The coordinator never does the work itself.<span class="src">1132</span><em>Now enforced by your PM hook, which blocked main-session reads today.</em></div><div class="st"><span class="pill p-met">MET</span></div></div>
+      <div class="row"><div class="id">S-63</div><div class="txt">Dispatch agents, stay available in chat, report.<span class="src">578</span></div><div class="st"><span class="pill p-met">MET</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R15 &middot; ACCEPTANCE</div>
+    <h3>The test you said you would run</h3>
+    <blockquote>"im then going to open a new chat with zero context on this and ask it to tell me what it does if it will actually achieve my goals and critically look at it - this chat better not find a single issue with its implementation, design or runtime as an automous high standard PM system."<span class="t">TURN 1065</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-64</div><div class="txt">A zero-context reviewer finds no issue with implementation, design or runtime.<span class="src">1065</span><em>This is the acceptance test for the whole rebuild. Three zero-context audits ran today and returned 13 absent controls, 9 cross-system disagreements and 12 tech-debt items.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R16 &middot; PROCESS</div>
+    <h3>Design before build, with measurable outcomes</h3>
+    <blockquote>"the main problem I have with agents is they build before designing properly - then it goes wrong as there is no way to measure outcomes are correct / success"<span class="t">TURN 85</span></blockquote>
+    <blockquote>"HOW ARE WE going to have this list ACTUALLY BE SYSEMATICALLY COMPLETED - not fucking you going la la la and doing whatever the fuck you remember IF YOU EVEN DO"<span class="t">TURN 901</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-65</div><div class="txt">Design properly before building, with a way to measure that outcomes are correct.<span class="src">85</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-66</div><div class="txt">A phase table: each phase and exactly what it produces.<span class="src">98</span></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-67</div><div class="txt">Per phase, the best product, process or AI type, plus its data pack and prompt needs.<span class="src">100</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-68</div><div class="txt">The complete phased development list.<span class="src">899</span></div><div class="st"><span class="pill p-part">PARTIAL</span></div></div>
+      <div class="row"><div class="id">S-69</div><div class="txt">That list is systematically completed by mechanism, not from memory.<span class="src">901</span><em>Promotion capacity is 0 of 147. Nothing on the list can advance.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-70</div><div class="txt">Redesign it properly from scratch.<span class="src">1037</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R17 &middot; SPEED</div>
+    <h3>Delay is itself the defect</h3>
+    <blockquote>"how are you going to build this in the next 10 minutes - youve wasted hours with poor design and i havent even been able to start the actual project - YOU ARE A BLOCKER CURRENTLY"<span class="t">TURN 1094</span></blockquote>
+    <blockquote>"I WANT THE FUCKING PRODUCT BUILT"<span class="t">TURN 973</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-71</div><div class="txt">Time to first real product work is a first-class metric.<span class="src">38 turns, 26% of everything you said</span></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-72</div><div class="txt">The product gets built. PM setup consuming the whole session is the failure.<span class="src">973, 1094</span><em>PR #10, two documents, is the only product artifact produced in 12+ hours.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R18 &middot; NO MANUAL STEPS</div>
+    <h3>Fix the capability, not the instance</h3>
+    <blockquote>"what about the next time we want to edit github you stupid fuck"<span class="t">TURN 261</span></blockquote>
+    <blockquote>"omg youve done the same thing 20 times"<span class="t">TURN 498</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-73</div><div class="txt">Manual steps are a defect, counted and driven to zero.<span class="src">256</span><em>STATE.md still lists three manual commands you ran 75 minutes ago.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-74</div><div class="txt">Fix the capability so the next occurrence cannot happen, not just this one.<span class="src">261, 427</span></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+      <div class="row"><div class="id">S-75</div><div class="txt">Never retry a failing approach repeatedly.<span class="src">498</span><em>52 identical no-op cycles logged in the daemon pane.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gid">R19 &middot; THE PRODUCT</div>
+    <h3>What you are actually building</h3>
+    <blockquote>"I should mention that I'd like to realease this product as an open source repo that people can just put their own AI / supabase etc keys in on the ui and it will run for them &hellip; I've been using adna.network as a campaign and mission organiser.. then I also want a visual and like an agent that keeps track of full progress. I have adhd - I need like a github board of whats getting done where and status etc - a mission control."<span class="t">TURN 121</span></blockquote>
+    <div class="reg">
+      <div class="row"><div class="id">S-76</div><div class="txt">Open source, bring-your-own-keys, runs for anyone.<span class="src">121</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+      <div class="row"><div class="id">S-77</div><div class="txt">The mission control visual is an accessibility requirement, not a preference. You named ADHD as the reason.<span class="src">121</span><em>This reclassifies S-26. A missing Kanban is an accessibility failure, not a missing nice-to-have.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+      <div class="row"><div class="id">S-78</div><div class="txt">The pipeline: jobs found daily, resumes and cover letters tailored, approve-to-send, tracker, automatic follow-ups, application status derived from email. Five surfaces. Supabase. Composer kept as the advanced editor.<span class="src">71, 35, 83</span></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAYER 2 ============ -->
+<section id="inferred">
+  <div class="shead">
+    <h2>Layer 2 &middot; Inferred</h2>
+    <span class="cnt mono">23 requirements &middot; entailed, never stated</span>
+  </div>
+  <p class="snote">These follow logically from what you demanded but appear nowhere in your words. They are the ones that dangle, because nobody writes down what they assume. Nine of my original inferences were promoted into Layer 1 once your verbatim turns arrived, which is the correct outcome: your words beat my derivation.</p>
+
+  <div class="reg">
+    <div class="row"><div class="id">I-01</div><div class="txt">A heartbeat must carry what advanced since the last beat, not just proof of life.<em>From S-30. A ten-minute ping that says "running" 52 times is what you have now.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-02</div><div class="txt">The check-in is generated from observed state, never from the coordinator's belief about state.<em>From S-30 + S-58. Otherwise it reports its own hallucination on a timer.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-03</div><div class="txt">Every number in every report carries its denominator.<em>From S-58. "4 complete" hid that #148 counts 145 tasks against 147 issues.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-04</div><div class="txt">A failure stops dependent work only. Blast radius is bounded.<em>From S-01. One stale label currently halts all 147 issues.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-05</div><div class="txt">Every blocker has a named owner and a visible age.<em>system-blocker is on 0 of 147 issues while the system is deadlocked.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-06</div><div class="txt">No agent may verify its own work, and no agent may write its own status.<em>The single root cause of the #5 deadlock. The worker was asked to apply the label that judges it.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-07</div><div class="txt">Status is derived from observable ground truth: branch, PR, declared files present in the diff, reviewer verdict. Never from a message anyone sends.<em>Three of the four artifacts the packet demands are unreadable by the code demanding them.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-08</div><div class="txt">No gate is trusted until it has been seen RED against a real defect.<em>herdr_dispatch.sh:32 reads .result.agent.state, a key Herdr 0.9.0 does not emit. The blocked branch has never fired and cannot.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-09</div><div class="txt">A health field that cannot go non-empty is a lie. Health must be computed, never hardcoded.<em>The uncommitted rewrite hardcodes stalled_tasks = [] at line 324 and filters for a STALLED event that is never emitted.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-10</div><div class="txt">Every claim in a document is an executable check, or it is deleted.<em>From S-44. 15 narrative claims in STATE.md; 8 fail under test.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-11</div><div class="txt">One authoritative writer per data domain. Drift is what two writers produce.<em>From S-35. Coordinator and worker both write the same labels, unarbitrated.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-12</div><div class="txt">Deterministic task identity by fingerprint, so re-seeding cannot create a duplicate.<em>From S-36. Current identity is title-string match, and three seed titles contain em dashes.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-13</div><div class="txt">An execution lease per task, with expiry, so a dead agent cannot hold a slot forever.<em>This is precisely the #5 bug. 75 minutes and counting.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-14</div><div class="txt">OWNS sets computed disjoint before parallel dispatch, mechanically.<em>From S-01. Required before WIP can safely exceed 1.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-15</div><div class="txt">WIP is a real concurrency limit, not a stall detector.<em>#148 reports 3 running against a limit of 1.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-16</div><div class="txt">An agent may not modify the control plane. Product lanes get product scope only.<em>The #5 worker was briefed to write two documents and instead rewrote the orchestrator and created 137 GitHub issues.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-17</div><div class="txt">Nothing an agent produces may exist only as untracked files. Work is committed or it does not exist.<em>4,600 lines currently one command from permanent loss.</em></div><div class="st"><span class="pill p-viol">VIOLATED</span></div></div>
+    <div class="row"><div class="id">I-18</div><div class="txt">Cross-system reconciliation on every cycle: GitHub, git, worktrees, Herdr, canonical state.<em>9 cross-cutting disagreements found today; none is detected by any code.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-19</div><div class="txt">Blind-agent onboarding needs a machine-readable context bundle with a freshness stamp. A stale bundle is worse than none.<em>From S-34.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-20</div><div class="txt">Context freshness contract: work built against a superseded spec version is invalidated, not merged.<em>From S-32.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-21</div><div class="txt">The zero-context review is run as a gate before you run it, not after.<em>From S-64. Otherwise your acceptance test is a coin flip.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-22</div><div class="txt">Chaos tests run on a schedule. A chaos test that exists but never runs is documentation.<em>0 tests and 0 CI workflows exist in 31 tracked files.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+    <div class="row"><div class="id">I-23</div><div class="txt">Known-open edge cases are enumerated with a count. Never an implied zero.<em>From S-39. You get handled-count and open-count, or you get a guess.</em></div><div class="st"><span class="pill p-unmet">UNMET</span></div></div>
+  </div>
+</section>
+
+<!-- ============ LAYER 3 ============ -->
+<section id="suggested">
+  <div class="shead">
+    <h2>Layer 3 &middot; Suggested</h2>
+    <span class="cnt mono">15 requirements &middot; my judgement, not yours</span>
+  </div>
+  <p class="snote">You have not asked for any of these. Reject them individually. G-15 is the one I most expect you to reject and most think you need.</p>
+
+  <div class="reg">
+    <div class="row"><div class="id">G-01</div><div class="txt">Cost ceiling per task and per day, with a hard stop.<em>Continuously running parallel agents spend money while you sleep. No governor exists anywhere in the design.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-02</div><div class="txt">Reversibility classification on every autonomous action. One-way doors stop and ask; everything else proceeds.<em>This is the single mechanism that makes autonomy safe rather than frightening, and it is what lets the coordinator stop asking you Type 2 questions.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-03</div><div class="txt">A "what it did while you slept" digest, separate from the heartbeat: decisions taken on your behalf, with reasoning.<em>Lets you audit delegated judgement without reading everything.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-04</div><div class="txt">A one-command kill switch that halts everything without corrupting state.<em>Stopping it currently means finding a PID.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-05</div><div class="txt">Two-way requirement traceability: every task names the requirement it closes, every requirement names its test.<em>The 137 orphan issues are exactly this failure, already present and already costing you.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-06</div><div class="txt">Definition of Done owned by the requirement, not by the task.<em>Stops acceptance criteria drifting to whatever the task happened to achieve.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-07</div><div class="txt">Time-box per task with escalation on overrun.<em>A lease covers the crash case. A time-box covers the quietly-wrong case, which is what #5 actually was.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-08</div><div class="txt">Human gates batched and presented once, not trickled.<em>Six interruptions cost more than one decision session.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-09</div><div class="txt">The system explains itself on demand. "Why is task X blocked" answerable by one command.<em>Without it, every anomaly costs you a forensic session. Today cost three.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-10</div><div class="txt">Graceful degradation. If Herdr dies, the queue survives in GitHub and resumes.<em>Your execution plane is currently a single point of failure with no fallback.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-11</div><div class="txt">Every phase ships something you can look at, not only documents.<em>Twelve hours has produced two markdown files and a deadlock.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-12</div><div class="txt">A single credential preflight that fails loudly at startup on a missing scope.<em>read:project has been missing all along and nothing told you.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-13</div><div class="txt">One task registry, one label taxonomy, enforced. A second one is rejected at write time.<em>Two generations of issues and two label vocabularies exist over one repo today.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-14</div><div class="txt">Any agent-created GitHub object carries its originating task ID, so mass creation is attributable and reversible.<em>137 issues appeared in a 5-minute burst and nothing records which task made them or why.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+    <div class="row"><div class="id">G-15</div><div class="txt"><strong>A hard cap on control-plane investment before product work resumes.</strong> Name the number: hours, or "when the reconciler passes chaos test 3". Then coordinator work stops whether it is beautiful or not.<em>Your own turns 973, 1094 and 38 delay-pressure turns say this louder than I can. The PM system is not the deliverable. A control plane that is 80% right and running beats one that is 100% designed and not.</em></div><div class="st"><span class="pill p-new">OPEN</span></div></div>
+  </div>
+</section>
+
+<!-- ============ CHATGPT BRIEF ============ -->
+<section id="brief">
+  <div class="shead">
+    <h2>The dispatch-bridge brief, scored</h2>
+    <span class="cnt mono">satisfies 2 of 116</span>
+  </div>
+  <p class="snote">The design ChatGPT proposed, measured against this register rather than against itself.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Part of the brief</th><th>Verdict</th><th>Against</th></tr></thead>
+      <tbody>
+        <tr><td>Requirement 5, idempotency: seven test cases</td><td><span class="pill p-met">KEEP VERBATIM</span></td><td>Closes I-12. The strongest thing in the document and better than anything in your control plane today</td></tr>
+        <tr><td>Requirement 6, user exclusion</td><td><span class="pill p-met">KEEP VERBATIM</span></td><td>Restates S-01, S-06, S-73. Testable</td></tr>
+        <tr><td>Requirement 8, HUMAN ACTION REQUIRED format</td><td><span class="pill p-met">KEEP</span></td><td>Correct shape for S-56</td></tr>
+        <tr><td>Durable queue surviving restart</td><td><span class="pill p-part">LATER</span></td><td>Partially closes I-13. Correct idea, wrong order</td></tr>
+        <tr><td><code>.career-os/control.db</code> as a new store</td><td><span class="pill p-unmet">REJECT</span></td><td>Violates I-11 and S-35. Adds a ninth source of truth to eight that already disagree, while the brief itself forbids duplicate state stores</td></tr>
+        <tr><td><code>RETURN ONLY / COMPLETED / TEST RESULTS</code></td><td><span class="pill p-viol">REJECT</span></td><td>Violates I-06 and S-58. This is self-certification, the exact defect that deadlocked #5, and turn 657 is you catching a fabricated COMPLETED block</td></tr>
+        <tr><td>Eight acceptance criteria</td><td><span class="pill p-unmet">REJECT</span></td><td>Not one tests that work was done correctly. No reviewer anywhere. Violates I-06, I-21, S-64</td></tr>
+        <tr><td>MCP surface with <code>source: "chatgpt"</code></td><td><span class="pill p-unmet">REJECT</span></td><td>Re-admits the model turn 515 rejected and turn 1216 revoked. A GitHub issue with a label is already a durable, idempotent, restart-surviving queue you can write to from your phone</td></tr>
+        <tr><td>"Do not redesign the whole PM system"</td><td><span class="pill p-viol">CONTRADICTS</span></td><td>Directly opposes S-70, turn 1037: "Redseign it properly from scratch"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Net.</strong> It fixes the entrance while the exit is welded shut. Your pipeline is not dead because intent could not get in; it is dead because a worker finished, opened a mergeable PR, and nothing noticed for 75 minutes. Salvage requirements 5, 6 and 8. Build the bridge at step 8, behind the reconciler, never in front of it.
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section id="evidence">
+  <div class="shead">
+    <h2>Evidence behind the scores</h2>
+    <span class="cnt mono">three read-only audits &middot; 2026-09-09</span>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Finding</th><th class="mono">Measure</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Architectural controls implemented</td><td class="mono">0 of 13</td><td>State machine, truth ownership, schema versioning, stale-context protection, concurrency control, task identity, reconciliation, crash recovery, cost governance, capability boundaries, observability, supersession, PM tests. All ABSENT</td></tr>
+        <tr><td>Tests and CI</td><td class="mono">0 of 31 files</td><td><code>git ls-files | grep -Ei 'test|spec|conftest|pytest|workflows'</code> exits 1</td></tr>
+        <tr><td>Promotion capacity</td><td class="mono">0 of 147</td><td>144 lack acceptance markers; the other 3 are gated behind <code>control_acceptance_passed()</code>, whose passing set is empty</td></tr>
+        <tr><td>Orphan issues no code references</td><td class="mono">137 of 147</td><td>#12-#148, created by PAT in a 5-minute burst, carrying a <code>phase:*</code>/<code>status:*</code> taxonomy nothing on main reads</td></tr>
+        <tr><td>Issue comments repo-wide</td><td class="mono">0</td><td>The mandated worker evidence trail has never produced a single artifact. VACUOUS, not passing</td></tr>
+        <tr><td>Deadlock duration at audit</td><td class="mono">52 cycles / 75 min</td><td><code>RUNNING: WIP limit reached (1)</code>, printed into an unlogged pane</td></tr>
+        <tr><td>STATE.md ticked items failing under test</td><td class="mono">3 of 12</td><td>T2 content, T6 wrong Herdr key, T10 claims a mechanism removed that survives in 9 places across 6 files</td></tr>
+        <tr><td>STATE.md narrative claims failing</td><td class="mono">8 of 15</td><td>Including "canonical state updates automatically" and "Human decisions required: None"</td></tr>
+        <tr><td>Cross-system disagreements</td><td class="mono">9</td><td>Two label taxonomies, two orchestrators, two tracked coordinators, a missing env file, an unreachable gate, zero comments, no gitignore, missing token scope, silent 200-issue truncation</td></tr>
+        <tr><td>Control planes over one repo</td><td class="mono">2</td><td>Generation A (#1-#11, ChatGPT Codex Connector) and Generation B (#12-#148, PAT). Only A runs, and it cannot see B's backlog</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p class="mono">Compiled from three independent read-only audits and a verbatim extraction of 147 of 147 user turns from a 1,218-turn source, md5 aa7085672cf8af992be74633b32d45c8. Nothing in the repository, GitHub or the running daemon was modified to produce this document. Issue #5 and PR #10 held frozen as the reproduction case.</p>
+  <p class="mono">Scores reflect the system as measured on 2026-09-09, not as described by any document within it.</p>
+</footer>
+
+</div>

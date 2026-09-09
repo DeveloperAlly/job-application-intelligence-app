@@ -6,6 +6,10 @@ Updated: 2026-09-09
 
 Open-source, self-hostable career automation platform: job discovery → evidence matching → tailored application generation → approval → tracking → follow-up → learning.
 
+## Requirement authority
+
+`how/campaigns/career-os-requirements.md` is the canonical requirement register for this campaign: 116 requirements (78 stated, 23 inferred, 15 suggested), compiled 2026-09-09 from 147 of 147 user turns. It supersedes any requirement list held in chat. Rendered view: `how/campaigns/career-os-requirements.html`.
+
 ## Current phase
 
 **CONTROL PLANE ACCEPTANCE**
