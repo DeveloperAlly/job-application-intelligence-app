@@ -1,12 +1,12 @@
 # Career OS Autonomous Project Management
 
-This repository is operated by a persistent autonomous PM control plane. Chat is advisory only and is never authoritative runtime state.
+This document specifies the target PM operating contract. The hosted control plane is not yet accepted; current evidence and next action live in [STATE.md](STATE.md). Explicit owner directions in chat can authorize work; the coordinator must record those decisions against their scope. Conversation is not a substitute for durable runtime evidence.
 
 ## Control architecture
 
 - **aDNA** — durable institutional memory: product intent, decisions, standards, missions, governance, runbooks, patterns, agent roles.
 - **Programme Registry** — executable task graph: phases, stable task IDs, dependencies, gates, acceptance, evidence, scope.
-- **Herdr Coordinator** — persistent runtime: reconcile, dedupe, build context contracts, dispatch workers/reviewers, monitor, recover, update state, notify, unlock next work.
+- **Coordinator with Herdr execution** — target persistent runtime: reconcile, dedupe, build context contracts, dispatch workers/reviewers, monitor, recover, update state, notify, unlock next work.
 - **GitHub Issues / PRs / CI** — durable task evidence and audit trail.
 - **GitHub Project: Career OS — Mission Control** — human control surface only; a projection of canonical state.
 
@@ -20,11 +20,11 @@ This repository is operated by a persistent autonomous PM control plane. Chat is
 | Agent roles / authority | aDNA who/ |
 | Campaigns / missions | aDNA |
 | Full work graph | Programme Registry |
-| Runtime task state | Herdr Coordinator |
+| Runtime task state | GitHub records written through the coordinator; Herdr supplies execution observations |
 | Code | Git |
 | Evidence | GitHub issue / PR / CI |
 | Human approval | Gate record |
-| Visual status | GitHub Project projection |
+| Visual status | Required control panel and chat; GitHub Project can be an additional projection |
 | Failures / learning | Failure Registry |
 
 ## Task state machine
@@ -175,7 +175,7 @@ Notify the human only for significant events:
 - phase gate ready
 - system failure
 
-Routine starts, heartbeats and normal retries stay on Mission Control.
+Routine state is visible in the control panel. The approved experience also requires proactive chat updates and a scheduled daily briefing; the hosted scheduler generates these independently of client sessions.
 
 ## Human role
 

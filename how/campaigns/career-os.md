@@ -6,7 +6,7 @@ Deliver an open-source, self-hostable career automation platform where a user ca
 
 ## Requirements
 
-Canonical requirement authority: `how/campaigns/career-os-requirements.md`. 116 requirements: 78 stated verbatim by the owner with turn numbers, 23 inferred, 15 suggested. Rendered view: `how/campaigns/career-os-requirements.html`. It supersedes any requirement list held in chat. No task is defined and no phase gate is judged without naming the requirement it closes.
+Canonical requirement authority: `pm/03-requirements.md`. It preserves R-001–R-116 from the campaign register and adds product requirements. The older campaign Markdown and HTML are historical views. Product intent remains in `what/context/product-contract.md`; every task and phase gate must name the requirements and evidence it addresses.
 
 ## Product proposition
 

@@ -1,3 +1,6 @@
+# Reconciliation 2026-09-10: preserved task plan, not runtime dispatch authority.
+# Current gate/WIP and next action are in STATE.md. Task-to-programme mapping and
+# independent outcome acceptance remain required; historical ready labels do not open the build gate.
 # Walkthrough step 6. Tasks for Career OS.
 #
 # Every `done` extracts the acceptance command from pm/03-requirements.md and runs it.

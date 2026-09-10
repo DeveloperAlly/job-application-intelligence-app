@@ -1,45 +1,36 @@
 # Career OS — State
 
-Updated: 2026-09-09
+Updated: 2026-09-10. Reconciled pending local work with GitHub main through `5c58e6b`.
 
-## Campaign
+## Current direction
 
-Open-source, self-hostable career automation platform: job discovery → evidence matching → tailored application generation → approval → tracking → follow-up → learning.
+The owner approved the reusable PM hosting architecture and requested publication/reconciliation. The system uses aDNA operating records versioned in GitHub, a Sliplane coordinator and private Herdr execution, Cloudflare, and Desktop Commander tools. The reusable PM implementation belongs in `DeveloperAlly/agent-governance`; Career OS is the product trial.
 
-## Requirement authority
+## Authority and source locations
 
-`how/campaigns/career-os-requirements.md` is the canonical requirement register for this campaign: 116 requirements (78 stated, 23 inferred, 15 suggested), compiled 2026-09-09 from 147 of 147 user turns. It supersedes any requirement list held in chat. Rendered view: `how/campaigns/career-os-requirements.html`.
+- Product intent and accepted product constraints: `what/context/product-contract.md` and `what/decisions/0001-career-os-product-contract.md`.
+- Requirement IDs and acceptance criteria: `pm/03-requirements.md`. Its R-001–R-116 import preserves the older campaign register; the campaign Markdown/HTML are historical views.
+- Product design, data/interface contracts, evals and decisions: `pm/03-*`, `pm/05-*`.
+- Campaign and phase sequence: `how/campaigns/career-os.md` and `how/programme.json`.
+- Proposed implementation task details: `pm/06-tasks.yaml`. These are not a competing runtime task registry; task-to-programme mapping and acceptance reconciliation remain required before dispatch.
+- Current status and next action: this file. Other status pages link here.
 
-## Current phase
+Explicit owner instructions determine authorization. Versioned decisions record it; tests and runtime observations establish what actually worked. Neither a historical status label nor a chat summary proves execution.
 
-**CONTROL PLANE ACCEPTANCE**
+## Current gate and next action
 
-## Current gate
+**CONTROL-005 / hosted coordinator acceptance remains unverified.** Architecture approval is recorded in the governance repository; it is not runtime or Career OS product acceptance.
 
-**CONTROL-005 — Persistent coordinator acceptance**
+Current task: publish the reconciled repositories. Next: prove bounded hosted Herdr dispatch, independent verification, restart recovery, usage limits and Desktop Commander access boundaries. Keep WIP at one until control acceptance. Product dispatch remains held behind its required phase gates; do not start either historical local coordinator from old bootstrap instructions.
 
-Pass criteria:
-- coordinator starts inside a Herdr-managed pane;
-- reads `STATE.md`, campaign and governance;
-- selects `P0-001` without human task selection;
-- creates isolated worktree;
-- dispatches bounded worker through native Herdr control;
-- worker produces durable deliverables/evidence/PR;
-- independent reviewer verifies;
-- canonical state updates automatically;
-- `P0-002` / `P0-003` become eligible and next work dispatches automatically;
-- WIP is 1 before acceptance and 3 after acceptance;
-- system blockers stop dependent work.
+## Preserved implementation and evidence
 
-## System blockers
+The repository contains pending work now captured in Git: evidence ingestion, job-ad intake/extraction, PDF rendering, matching tests and PM contracts. Publication preserves this work; it does not retroactively approve its original build sequence or establish a finished product. See `how/publication-reconciliation-2026-09-10.md` for validation and remaining integration gaps.
 
-None in repository configuration.
+## Historical local control observations
 
-## Active objective — WIP = 1 until acceptance
+The following checklist is retained from the earlier local attempt. Its checkmarks are historical assertions, not acceptance of the hosted system.
 
-1. **CONTROL-005 / GitHub #4 — Persistent coordinator acceptance — READY FOR LOCAL RUN.**
-
-## Completed control-plane work
 
 - [x] Correct repo verified: `DeveloperAlly/job-application-intelligence-app`
 - [x] PM state/campaign/governance/checklists installed
@@ -53,23 +44,3 @@ None in repository configuration.
 - [x] obsolete `HERDR_DISPATCH_TEMPLATE` removed
 - [x] `start.sh` simplified to native Herdr runtime
 - [x] CONTROL-004 PASS / GitHub #3 closed
-
-## Queued Phase 0 backlog
-
-- **P0-001 / GitHub #5** — Canonical product vision + problem statement — first automatic mission.
-- **P0-002 / GitHub #6** — Personas + JTBD — after control acceptance.
-- **P0-003 / GitHub #7** — Scope + non-goals + metrics + principles + glossary — after control acceptance.
-- **P0-GATE / GitHub #9** — human phase-gate approval after P0 missions verify.
-
-## Human action required now
-
-From the verified local repo:
-1. `git pull`
-2. start/attach Herdr with `herdr`
-3. in a Herdr-managed shell pane at the repo root run `bash ops/herdr-coordinator/start.sh`
-
-After that, routine PM progression must be autonomous.
-
-## Human decisions required
-
-None until a genuine product phase gate or non-resolvable blocker occurs.

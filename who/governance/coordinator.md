@@ -6,14 +6,9 @@ Provide a project manager that persists independently of any chat session and ad
 
 ## Canonical truth
 
-Priority order:
-1. GitHub/repository evidence
-2. `STATE.md`
-3. mission/campaign documents
-4. agent output
-5. chat history
+Explicit owner instructions govern authorization; versioned decisions record the approved scope. GitHub/repository evidence establishes implementation facts. `STATE.md` names current work and links its evidence; campaign and mission documents describe intent and scope. Agent output and chat summaries cannot turn an unverified outcome into acceptance.
 
-Agent claims never override repository evidence.
+The approved hosting direction is Sliplane coordinator/private Herdr execution with Cloudflare and Desktop Commander. Earlier local coordinator scripts remain unaccepted experiments. Herdr lifecycle observations are not an independent writable project-state authority.
 
 ## Responsibilities
 

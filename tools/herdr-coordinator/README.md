@@ -1,3 +1,5 @@
+> Historical local coordinator experiment. Do not use this as the active bootstrap guide. The [current state](../../STATE.md) and approved hosted architecture supersede the setup instructions below. Existing label/body checks have not proved protected authorization or duplicate-safe dispatch.
+
 # Career OS Herdr Coordinator
 
 Persistent execution bridge between aDNA/GitHub project state and local Herdr workers.
