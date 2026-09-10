@@ -1,0 +1,10 @@
+.claude/
+.career-os/
+.worktrees/
+__pycache__/
+*.pyc
+
+# personal application data — never commit
+store/
+apps/tracker/tracker.local.html
+apps/tracker/shots/

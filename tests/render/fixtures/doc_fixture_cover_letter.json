@@ -1,0 +1,22 @@
+{
+  "approval_override_reason": null,
+  "approval_state": "draft",
+  "approved_at": null,
+  "blocked_claim_ids": [],
+  "body_text": "Wren Halloway\n\nwren.halloway@example.invalid | +61 3 5550 0100\n\n12 September 2026\n\nHiring team, Perrin Laboratories\n\nI am applying for the Staff Platform Engineer role at Perrin Laboratories. Your posting says the scheduler is the bottleneck and that you need someone who has taken one from prototype to production traffic rather than someone who has read about it.\n\nAt Nimbus Clearing I designed the scheduler that now places 2.4 million jobs a month across 180 heterogeneous nodes. Median queue wait fell from 41 seconds to 6. The design notes and the benchmark harness are public in the Driftwood repository, so you can check the claim rather than take it.\n\nThe part of your posting I care most about is the line about the settlement path. I rewrote one in Rust at Nimbus after 14 incidents in a year traced back to a double spend class of defect. That work is the reason I want this role specifically and not a generic platform role.\n\nI would welcome the chance to talk it through.\n\nWren Halloway\n",
+  "document_kind": "cover_letter",
+  "evidence_record_ids": [
+    "ev_fixture_nimbus_scheduler",
+    "ev_fixture_thornfield_programme"
+  ],
+  "failing_dimension_ids": [],
+  "id": "doc_fixture_cover_letter",
+  "job_ad_id": "ad_fixture_perrin_staff_platform",
+  "model_id": "fixture-no-model",
+  "render_format": null,
+  "render_uri": null,
+  "revision": 1,
+  "rubric_version_id": "rv_fixture_2026_09",
+  "scoring_state": "unscored",
+  "visual_style_id": null
+}

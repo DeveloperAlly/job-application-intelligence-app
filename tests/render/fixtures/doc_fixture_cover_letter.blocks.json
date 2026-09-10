@@ -1,0 +1,41 @@
+{
+  "_fixture": "INVENTED TEST DATA. Wren Halloway, Nimbus Clearing, Thornfield Systems, Ardley Robotics, Perrin Laboratories and every number above are placeholders created for this test suite. No content here is read from store/evidence/, which holds the owner's real career history and is out of this lane's scope.",
+  "blocks": [
+    {
+      "kind": "name",
+      "text": "Wren Halloway"
+    },
+    {
+      "kind": "contact",
+      "text": "wren.halloway@example.invalid | +61 3 5550 0100"
+    },
+    {
+      "kind": "paragraph",
+      "text": "12 September 2026"
+    },
+    {
+      "kind": "paragraph",
+      "text": "Hiring team, Perrin Laboratories"
+    },
+    {
+      "kind": "paragraph",
+      "text": "I am applying for the Staff Platform Engineer role at Perrin Laboratories. Your posting says the scheduler is the bottleneck and that you need someone who has taken one from prototype to production traffic rather than someone who has read about it."
+    },
+    {
+      "kind": "paragraph",
+      "text": "At Nimbus Clearing I designed the scheduler that now places 2.4 million jobs a month across 180 heterogeneous nodes. Median queue wait fell from 41 seconds to 6. The design notes and the benchmark harness are public in the Driftwood repository, so you can check the claim rather than take it."
+    },
+    {
+      "kind": "paragraph",
+      "text": "The part of your posting I care most about is the line about the settlement path. I rewrote one in Rust at Nimbus after 14 incidents in a year traced back to a double spend class of defect. That work is the reason I want this role specifically and not a generic platform role."
+    },
+    {
+      "kind": "paragraph",
+      "text": "I would welcome the chance to talk it through."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Wren Halloway"
+    }
+  ]
+}

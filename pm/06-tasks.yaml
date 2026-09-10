@@ -1,0 +1,330 @@
+# Walkthrough step 6. Tasks for Career OS.
+#
+# Every `done` extracts the acceptance command from pm/03-requirements.md and runs it.
+# It never copies that command. The register is the only home for any criterion, so the
+# task file cannot drift from it. The extraction pattern was run against R-117, R-123,
+# R-127 and R-143 before this file was written; all four extracted and executed.
+#
+# Tier 1 starting state, 2026-09-09: 18 of 18 acceptance commands red, 0 green,
+# 0 unextractable. That is the ladder these tasks climb.
+#
+# WIP cap: 3. Not inherited. Three is how many done-commands can be re-run and read
+# inside one turn without deferring verification, and deferred verification is the
+# failure this project is correcting. Raise it only by arguing with that reasoning.
+#
+# On the word "and" in an outcome. Step 6 says an outcome containing "and" should be
+# split. Four outcomes contain it. Two are list conjunctions rather than two outcomes:
+# T-011 renders two document kinds through one renderer, T-015 records three fields in
+# one ledger entry. Two are genuine conjunctions kept as one task under rule 7, because
+# they always ship together and share an owns set: T-001, where the record shape and the
+# self-provenance rule are both the evidence store's contract, and T-012, where approval,
+# claim display and override recording are one surface. Splitting either would put two
+# tasks in one directory, which is the failure the disjointness rule exists to prevent.
+
+- id: T-001
+  outcome: an evidence record carries a source, a date, and never cites a document this system generated
+  requirement: [R-117, R-140]
+  depends_on: []
+  owns:
+    - src/evidence/**
+    - tests/evidence/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-117 R-140'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/evidence/store.py
+    - tests/evidence/test_source_and_date.py
+    - tests/evidence/test_rejects_self_generated_provenance.py
+  status: done
+  note: >-
+    Done command green, verified by the PM 2026-09-09. R-117 prints 27 of 27 records carrying a
+    source and a date. R-140 exits 0 but is VACUOUS on real data, denominator 0, because no
+    generated document exists yet for a claim to rest on. Re-run R-140 when T-011 renders the
+    first document; do not treat it as green before then. 27 of 73 available facts imported,
+    46 rejected and listed rather than invented.
+
+- id: T-002
+  outcome: a job advertisement enters by URL or paste with its source text retained unmodified
+  requirement: [R-119]
+  depends_on: []
+  owns:
+    - src/intake/**
+    - tests/intake/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-119'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/intake/receive.py
+    - tests/intake/test_url_and_paste.py
+  status: ready
+
+- id: T-003
+  outcome: the extractor stores seven fields, marking any it cannot determine as unknown rather than inferring it
+  requirement: [R-120, R-121]
+  depends_on: [T-002]
+  owns:
+    - src/extract/**
+    - tests/extract/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-120 R-121'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/extract/fields.py
+    - tests/extract/test_seven_fields.py
+    - tests/extract/test_unknown_not_inferred.py
+  status: ready
+
+- id: T-004
+  outcome: experience content is selected by relevance to the advertisement with a rationale recorded per decision
+  requirement: [R-124]
+  depends_on: [T-001, T-003]
+  owns:
+    - src/select/**
+    - tests/select/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-124'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/select/relevance.py
+    - tests/select/test_rationale_recorded.py
+  status: blocked
+  note: waiting on T-001, T-003
+
+- id: T-005
+  outcome: portfolio pieces are selected with the reason for each selection recorded
+  requirement: [R-125]
+  depends_on: [T-001]
+  owns:
+    - src/portfolio/**
+    - tests/portfolio/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-125'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/portfolio/select.py
+    - tests/portfolio/test_reason_recorded.py
+  status: ready
+  note: unblocked 2026-09-09, T-001 done
+
+- id: T-006
+  outcome: a tailored resume is composed drawing only on evidence records
+  requirement: [R-123]
+  depends_on: [T-004]
+  owns:
+    - src/compose/resume/**
+    - tests/compose/resume/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-123'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/compose/resume/compose.py
+    - tests/compose/resume/test_evidence_only.py
+  status: blocked
+  note: waiting on T-004
+
+- id: T-007
+  outcome: a cover letter is composed to satisfy dimension D-05 of the rubric
+  requirement: [R-126]
+  depends_on: [T-004]
+  owns:
+    - src/compose/letter/**
+    - tests/compose/letter/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-126'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/compose/letter/compose.py
+    - tests/compose/letter/test_d05.py
+  status: blocked
+  note: waiting on T-004. R-126 cannot reach green while 2 of 3 D-05 thresholds in pm/03-evals.md remain unestablished.
+
+- id: T-008
+  outcome: a document carrying a claim that resolves to no evidence record is blocked before approval
+  requirement: [R-118]
+  depends_on: [T-006, T-007]
+  owns:
+    - src/gate/claims/**
+    - tests/gate/claims/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-118'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/gate/claims/trace.py
+    - tests/gate/claims/test_untraceable_blocks.py
+  status: blocked
+  note: waiting on T-006, T-007
+
+- id: T-009
+  outcome: a sentence absent from a document's claim map blocks that document
+  requirement: [R-143]
+  depends_on: [T-006, T-007]
+  owns:
+    - src/gate/sentences/**
+    - tests/gate/sentences/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-143'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/gate/sentences/map.py
+    - tests/gate/sentences/test_unmapped_sentence_blocks.py
+  status: blocked
+  note: waiting on T-006, T-007. This is the gate that stops fabricated prose reaching an employer.
+
+- id: T-010
+  outcome: a document is scored against every rubric dimension with failures named
+  requirement: [R-128]
+  depends_on: [T-006, T-007]
+  owns:
+    - src/rubric/**
+    - tests/rubric/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-128'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/rubric/score.py
+    - tests/rubric/test_failing_dimension_named.py
+  status: blocked
+  note: waiting on T-006, T-007. 6 of 19 thresholds are unestablished, so this returns not decidable on D-01, D-04, D-05 and D-09 until they are set.
+
+- id: T-011
+  outcome: resume and cover letter render to PDF in the approved visual style
+  requirement: [R-127]
+  depends_on: [T-006, T-007]
+  owns:
+    - src/render/**
+    - tests/render/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-127'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/render/pdf.py
+    - tests/render/test_pdf_bytes.py
+  status: blocked
+  note: waiting on T-006, T-007. ADR-001 puts the estate renderer on the denylist, so this starts from nothing. Four tasks wait behind it. It is the schedule risk named in pm/04-options.md.
+
+- id: T-012
+  outcome: nothing leaves without explicit approval, with every claim shown and every override recorded
+  requirement: [R-129, R-130, R-141]
+  depends_on: [T-008, T-009, T-010, T-011]
+  owns:
+    - src/approve/**
+    - tests/approve/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-129 R-130 R-141'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/approve/surface.py
+    - src/approve/override.py
+    - tests/approve/test_no_send_without_approval.py
+    - tests/approve/test_claims_shown.py
+    - tests/approve/test_override_recorded.py
+  status: blocked
+  note: waiting on T-008, T-009, T-010, T-011
+
+- id: T-013
+  outcome: an unapproved document can be edited, then is rescored
+  requirement: [R-131]
+  depends_on: [T-012]
+  owns:
+    - src/edit/**
+    - tests/edit/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-131'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/edit/revise.py
+    - tests/edit/test_rescore_after_edit.py
+  status: blocked
+  note: waiting on T-012
+
+- id: T-015
+  outcome: every model output records the model, its inputs, and the rubric version it was scored against
+  requirement: [R-137]
+  depends_on: [T-003, T-006, T-007]
+  owns:
+    - src/provenance/**
+    - tests/provenance/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-137'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/provenance/ledger.py
+    - tests/provenance/test_model_inputs_rubric_recorded.py
+  status: blocked
+  note: waiting on T-003, T-006, T-007
+
+- id: T-016
+  outcome: an application is recorded with employer, role, date, documents sent, status, including ones submitted outside the system
+  requirement: [R-132, R-142]
+  depends_on: [T-012]
+  owns:
+    - src/applications/**
+    - tests/applications/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-132 R-142'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/applications/register.py
+    - tests/applications/test_external_submission.py
+  status: blocked
+  note: Tier 2, deferred by the owner until Tier 1 works
+
+- id: T-017
+  outcome: the current status of every application is visible on one surface without opening a file
+  requirement: [R-133]
+  depends_on: [T-016]
+  owns:
+    - src/status/**
+    - tests/status/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-133'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/status/surface.py
+    - tests/status/test_one_surface.py
+  status: blocked
+  note: Tier 2, deferred by the owner until Tier 1 works
+
+- id: T-018
+  outcome: daily discovery presents each matching posting once against user-defined criteria
+  requirement: [R-122, R-138, R-139]
+  depends_on: [T-003]
+  owns:
+    - src/discovery/**
+    - tests/discovery/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-122 R-138 R-139'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/discovery/feed.py
+    - tests/discovery/test_presented_once.py
+  status: blocked
+  note: Tier 3, deferred by the owner. Needs an outside job source.
+
+- id: T-019
+  outcome: application status is derived from received email with the message cited
+  requirement: [R-134]
+  depends_on: [T-016]
+  owns:
+    - src/mailbox/**
+    - tests/mailbox/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-134'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/mailbox/derive.py
+    - tests/mailbox/test_status_cites_message.py
+  status: blocked
+  note: Tier 3, deferred by the owner. Needs mailbox access.
+
+- id: T-020
+  outcome: a follow-up action is raised when no response arrives inside the user-set interval
+  requirement: [R-135]
+  depends_on: [T-019]
+  owns:
+    - src/followup/**
+    - tests/followup/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-135'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/followup/schedule.py
+    - tests/followup/test_interval_elapsed.py
+  status: blocked
+  note: Tier 3, deferred by the owner
+
+- id: T-021
+  outcome: no email is sent on the user's behalf without explicit per-message approval
+  requirement: [R-136]
+  depends_on: [T-019]
+  owns:
+    - src/outbound/**
+    - tests/outbound/**
+  done: |-
+    python3 -c "import re,subprocess,sys;ids='R-136'.split();L=open('pm/03-requirements.md').readlines();f=lambda r:re.search(chr(96)+'(.+?)'+chr(96),[x for x in L if x.startswith('| '+r+' ')][0].replace(chr(92)+chr(124),chr(0)).split(chr(124))[4].strip().replace(chr(0),chr(124)),re.S).group(1);sys.exit(max(subprocess.run(['bash','-c',f(r)]).returncode for r in ids))"
+  evidence:
+    - src/outbound/gate.py
+    - tests/outbound/test_per_message_approval.py
+  status: blocked
+  note: Tier 3, deferred by the owner

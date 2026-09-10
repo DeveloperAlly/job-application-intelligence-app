@@ -1,0 +1,113 @@
+{
+  "_fixture": "INVENTED TEST DATA. Wren Halloway, Nimbus Clearing, Thornfield Systems, Ardley Robotics, Perrin Laboratories and every number above are placeholders created for this test suite. No content here is read from store/evidence/, which holds the owner's real career history and is out of this lane's scope.",
+  "blocks": [
+    {
+      "kind": "name",
+      "text": "Wren Halloway"
+    },
+    {
+      "kind": "contact",
+      "text": "Fictitious Placeholder, Melbourne VIC | wren.halloway@example.invalid | +61 3 5550 0100 | example.invalid/wren"
+    },
+    {
+      "kind": "heading",
+      "text": "Summary"
+    },
+    {
+      "kind": "paragraph",
+      "text": "Staff engineer and developer advocate for distributed compute platforms. Built and shipped the runtime behind a public compute network, and ran the developer programme that took it from 40 to 900 weekly active builders."
+    },
+    {
+      "kind": "heading",
+      "text": "Work Experience"
+    },
+    {
+      "kind": "role_title",
+      "text": "Staff Engineer, Developer Platform, Nimbus Clearing"
+    },
+    {
+      "kind": "role_meta",
+      "text": "Melbourne, remote. March 2023 to present."
+    },
+    {
+      "kind": "bullet",
+      "text": "Designed the scheduler that placed 2.4 million jobs per month across 180 heterogeneous nodes, cutting median queue wait from 41 seconds to 6 seconds."
+    },
+    {
+      "kind": "bullet",
+      "text": "Rewrote the job settlement path in Rust, removing a class of double spend defects that had produced 14 incidents in the preceding year."
+    },
+    {
+      "kind": "bullet",
+      "text": "Led the migration of 62 internal services onto a single deployment contract, retiring four bespoke pipelines."
+    },
+    {
+      "kind": "role_title",
+      "text": "Senior Developer Advocate, Thornfield Systems"
+    },
+    {
+      "kind": "role_meta",
+      "text": "Sydney. January 2020 to February 2023."
+    },
+    {
+      "kind": "bullet",
+      "text": "Grew the partner developer programme from 40 to 900 weekly active builders across 23 countries."
+    },
+    {
+      "kind": "bullet",
+      "text": "Delivered 31 conference talks and workshops, including the opening keynote at a 1,200 attendee platform summit."
+    },
+    {
+      "kind": "bullet",
+      "text": "Wrote the reference client and its documentation, which became the integration path for 76 percent of new partners."
+    },
+    {
+      "kind": "role_title",
+      "text": "Software Engineer, Ardley Robotics"
+    },
+    {
+      "kind": "role_meta",
+      "text": "Wollongong. February 2017 to December 2019."
+    },
+    {
+      "kind": "bullet",
+      "text": "Built the motion planning service for a warehouse picking fleet of 55 units, raising throughput 28 percent."
+    },
+    {
+      "kind": "bullet",
+      "text": "Introduced hardware in the loop testing, which caught 9 of the 11 field faults reported that year before release."
+    },
+    {
+      "kind": "heading",
+      "text": "Education"
+    },
+    {
+      "kind": "role_title",
+      "text": "Bachelor of Engineering, Mechatronics, Fictional University of Wollongong"
+    },
+    {
+      "kind": "role_meta",
+      "text": "2012 to 2016. First class honours."
+    },
+    {
+      "kind": "heading",
+      "text": "Skills"
+    },
+    {
+      "kind": "paragraph",
+      "text": "Rust, Python, Go, TypeScript, distributed scheduling, WebAssembly runtimes, Kubernetes, Terraform, technical writing, conference speaking, developer programme design."
+    },
+    {
+      "kind": "heading",
+      "text": "Projects"
+    },
+    {
+      "kind": "role_title",
+      "text": "Driftwood, an open source job scheduler"
+    },
+    {
+      "kind": "bullet",
+      "text": "Original work, not a fork. 4,100 stars and 61 contributors, last commit within the current quarter."
+    }
+  ]
+}

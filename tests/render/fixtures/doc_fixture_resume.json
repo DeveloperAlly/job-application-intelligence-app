@@ -1,0 +1,22 @@
+{
+  "approval_override_reason": null,
+  "approval_state": "draft",
+  "approved_at": null,
+  "blocked_claim_ids": [],
+  "body_text": "Wren Halloway\n\nFictitious Placeholder, Melbourne VIC | wren.halloway@example.invalid | +61 3 5550 0100 | example.invalid/wren\n\nSummary\n\nStaff engineer and developer advocate for distributed compute platforms. Built and shipped the runtime behind a public compute network, and ran the developer programme that took it from 40 to 900 weekly active builders.\n\nWork Experience\n\nStaff Engineer, Developer Platform, Nimbus Clearing\n\nMelbourne, remote. March 2023 to present.\n\n- Designed the scheduler that placed 2.4 million jobs per month across 180 heterogeneous nodes, cutting median queue wait from 41 seconds to 6 seconds.\n\n- Rewrote the job settlement path in Rust, removing a class of double spend defects that had produced 14 incidents in the preceding year.\n\n- Led the migration of 62 internal services onto a single deployment contract, retiring four bespoke pipelines.\n\nSenior Developer Advocate, Thornfield Systems\n\nSydney. January 2020 to February 2023.\n\n- Grew the partner developer programme from 40 to 900 weekly active builders across 23 countries.\n\n- Delivered 31 conference talks and workshops, including the opening keynote at a 1,200 attendee platform summit.\n\n- Wrote the reference client and its documentation, which became the integration path for 76 percent of new partners.\n\nSoftware Engineer, Ardley Robotics\n\nWollongong. February 2017 to December 2019.\n\n- Built the motion planning service for a warehouse picking fleet of 55 units, raising throughput 28 percent.\n\n- Introduced hardware in the loop testing, which caught 9 of the 11 field faults reported that year before release.\n\nEducation\n\nBachelor of Engineering, Mechatronics, Fictional University of Wollongong\n\n2012 to 2016. First class honours.\n\nSkills\n\nRust, Python, Go, TypeScript, distributed scheduling, WebAssembly runtimes, Kubernetes, Terraform, technical writing, conference speaking, developer programme design.\n\nProjects\n\nDriftwood, an open source job scheduler\n\n- Original work, not a fork. 4,100 stars and 61 contributors, last commit within the current quarter.\n",
+  "document_kind": "resume",
+  "evidence_record_ids": [
+    "ev_fixture_nimbus_scheduler",
+    "ev_fixture_thornfield_programme"
+  ],
+  "failing_dimension_ids": [],
+  "id": "doc_fixture_resume",
+  "job_ad_id": "ad_fixture_perrin_staff_platform",
+  "model_id": "fixture-no-model",
+  "render_format": null,
+  "render_uri": null,
+  "revision": 1,
+  "rubric_version_id": "rv_fixture_2026_09",
+  "scoring_state": "unscored",
+  "visual_style_id": null
+}

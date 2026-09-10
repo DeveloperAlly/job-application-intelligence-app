@@ -1,8 +1,9 @@
+SUPERSEDED BY pm/03-requirements.md
 # Career OS Requirement Register
 
 Compiled 2026-09-09.
 
-**This file is the canonical requirement authority for the Career OS campaign and supersedes any requirement list held in chat.**
+**SUPERSEDED 2026-09-09. The canonical requirement authority is pm/03-requirements.md. This file is retained as a view; its rows are traceable there as R-001 to R-116 via the source column.**
 
 Provenance: 147 of 147 user turns read; 1,218 turns indexed; source md5 `aa7085672cf8af992be74633b32d45c8`.
 
